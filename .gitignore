@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Uneccessary folders.
+src/core/sso/cloud.py
+
 # C extensions
 *.so
 
