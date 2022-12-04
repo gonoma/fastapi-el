@@ -6,3 +6,6 @@ passlib~=1.7.4
 python-jose~=3.3.0
 asyncpg~=0.27.0
 python-multipart~=0.0.5
+psycopg2-binary~=2.9.3
+alembic~=1.8.1
+alembic-utils~=0.7.8
