@@ -1,14 +1,13 @@
 from datetime import datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.responses import Response
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from src.api.dependencies import get_db
-from src.database.schemas.users import User
+from src.database.schemas.users.user import User
 from src.models import (
     Token,
     UserInDB,
