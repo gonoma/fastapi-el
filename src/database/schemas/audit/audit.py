@@ -1,13 +1,12 @@
 # coding: utf-8
 from sqlalchemy import Column, BigInteger, String, DateTime, text, Text, Sequence
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import relationship
 
 from src.database.base import BaseModel
 
 
-class LoggedActions(BaseModel):
-    __tablename__ = 'logged_actions'
+class LoggedAction(BaseModel):
+    __tablename__ = 'logged_action'
     __table_args__ = {'schema': 'audit'}
 
     event_id_seq = Sequence('logged_actions_event_id_seq')

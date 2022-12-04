@@ -6,6 +6,10 @@ __pycache__/
 # Uneccessary folders.
 src/core/sso/cloud.py
 
+# IDEs
+.vscode/
+.idea/
+
 # C extensions
 *.so
 
