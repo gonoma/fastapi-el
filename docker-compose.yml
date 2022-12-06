@@ -18,8 +18,6 @@ services:
       - "--save 10 100"
       # Set password
       - "--requirepass ubuntu"
-      # Set username
-      - "--user gonz"
 
   redisinsight: # redis db visualization dashboard
     container_name: redisinsight-cont
