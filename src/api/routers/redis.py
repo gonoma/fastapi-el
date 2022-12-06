@@ -40,13 +40,16 @@ def get_routes_from_api(parameters: str) -> dict:
         # url = f"{base_url}/{coordinates}?geometries={geometries}&access_token={access_token}"
 
         'https://ipinfo.io/161.185.160.93/geo'
-        'https://api.nationalize.io/?name=Omer'
+
+        # Name
+        url = f'https://api.nationalize.io/?name={parameters}'
 
         # Yoda; max 5 requests per hour
-        url = f'https://api.funtranslations.com/translate/yoda.json?text={parameters}'
+        # url = f'https://api.funtranslations.com/translate/yoda.json?text={parameters}'
 
         response = client.get(url)
-        return response.json()
+
+        return response
 
 
 def get_routes_from_cache(key: str) -> str:
@@ -76,10 +79,11 @@ def route_optima(parameters: str) -> dict:
 
     else:
         # If cache is not found then sends request to the MapBox API
-        data = get_routes_from_api(parameters)
+        response = get_routes_from_api(parameters)
 
         # This block sets saves the respose to redis and serves it directly
-        if data.get("code") == "Ok":
+        if response.status_code == 200:
+            data = response.json()
             data["cache"] = False
             data = json.dumps(data)
             state = set_routes_to_cache(key=parameters, value=data)
@@ -96,6 +100,6 @@ def view(parameters: str) -> dict:
     the end user. """
 
     # For Yoda
-    parameters = parameters.replace(" ", "%20")
+    # parameters = parameters.replace(" ", "%20")
 
     return route_optima(parameters)
