@@ -81,6 +81,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 #         raise HTTPException(status_code=400, detail="Inactive user")
 #     return current_user
 
+
 @router.post(
     "/sign-in",
     response_model=Token,
@@ -102,7 +103,7 @@ async def sign_in_for_access_token(
     # Send email to enable account
     return db_user
 
-
+# TODO: Set caching for this endpoint
 @router.post(
     "/login",
     response_model=Token,
