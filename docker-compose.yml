@@ -1,27 +1,35 @@
 # docker-compose.yml
 
+#Please note
+#The host for redis insight is the container host, not the server host in the local machine
+#for this case:
+#host -> redis
+#port -> 6379
+#name -> gonz
+
+#Standard Structure:
+#redis://[[user]:[pass]]@host:port/db ; the user and pass are neglected by default
+
 version: "3.2"
 services:
   redis:
     container_name: redis-cont
-    image: "redis:alpine"
+    image: redis:alpine
     environment:
-      - REDIS_PASSWORD=ubuntu
+      - REDIS_URL=redis://redis:6379/gonz
       - REDIS_REPLICATION_MODE=master
     ports:
       - "6379:6379"
     volumes:
       # save redisearch data to your current working directory
       - ./redis-data:/data
-    command:
-      # Save if 100 keys are added in every 10 seconds
-      - "--save 10 100"
-      # Set password
-      - "--requirepass ubuntu"
+#    command:
+#      # Save if 100 keys are added in every 10 seconds
+#      - "--save 10 100"
 
   redisinsight: # redis db visualization dashboard
     container_name: redisinsight-cont
-    image: redislabs/redisinsight
+    image: redislabs/redisinsight:latest
     ports:
       - 8001:8001
     volumes:

@@ -15,7 +15,7 @@ def redis_connect() -> redis.client.Redis:
         client = redis.Redis(
             host="localhost",
             port=6379,
-            password="ubuntu",
+            # password="ubuntu",
             db=0,
             socket_timeout=5,
         )
