@@ -9,6 +9,7 @@ import redis
 
 router = APIRouter(prefix='/redis')
 
+# URL tutorial -> https://rednafi.github.io/digressions/python/database/2020/05/25/python-redis-cache.html
 
 def redis_connect() -> redis.client.Redis:
     try:
