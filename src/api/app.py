@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, FastAPI, status
 
 from src.api.dependencies import engine
-from src.api.routers import user, redis
+from src.api.routers import user, redis, rss_feed
 from src.utils.settings import get_settings
 
 settings = get_settings()
@@ -41,6 +41,7 @@ async def startup() -> None:
     v1_router = APIRouter(prefix='/v1')
     v1_router.include_router(user.router, tags=['user'])
     v1_router.include_router(redis.router, tags=['redis'])
+    v1_router.include_router(rss_feed.router, tags=['rss-feed'])
 
     app.include_router(v1_router)
 
